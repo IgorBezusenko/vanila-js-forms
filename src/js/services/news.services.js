@@ -1,9 +1,9 @@
 import axiosInstance from '../plagins/axios';
 
 
-export async function login(email, password) {
+export async function getNews() {
     try {
-        const response = await axiosInstance.post(`/auth/login`, JSON.stringify({email, password}), {})
+        const response = await axiosInstance.get(`/news`)
 
         console.log(response)
         return response

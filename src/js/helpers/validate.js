@@ -10,7 +10,6 @@ const regExpDic = {
 
 export function validate(el) {
     const regExpName = el.dataset.required;
-    console.log("regExpName", regExpName)
     if (!regExpDic[regExpName]) return true
     return regExpDic[regExpName].test(el.value)
 }

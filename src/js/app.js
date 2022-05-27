@@ -6,6 +6,7 @@ import {validate} from "./helpers/validate";
 import {removeInputError, showInputError} from "./views/form";
 import {login} from "./services/auth.services";
 import {notify} from "./views/notifications";
+import {getNews} from "./services/news.services";
 
 const {form, inputEmail, inputPassword} = UI
 const inputs = [inputEmail, inputPassword]
@@ -19,11 +20,9 @@ form.addEventListener('submit', (e) => {
 inputs.forEach(el => el.addEventListener('focus', () => removeInputError(el)))
 
 //Handler
-// email: "asd@ads.d"
-// password: "adasdas"
-//
-// email: "asdasd@fas.f"
-// password: "adsas"
+
+// email: "denis.m.pcspace@gmail.com"
+// password: "dmgame12345"
 async function onSubmit() {
     const isValidForm = inputs.every((el) => {
         const isValidInput = validate(el)
@@ -36,6 +35,7 @@ async function onSubmit() {
 
     try {
         await login(inputEmail.value, inputPassword.value)
+        await getNews()
         form.reset()
         notify({msg: "Login success", className: "alert-success"})
     } catch (e) {
